@@ -1,0 +1,13 @@
+select {
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+
+.home-search-filters-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    color: whitesmoke;
+    font-size: larger;
+}

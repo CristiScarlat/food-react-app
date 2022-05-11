@@ -1,0 +1,12 @@
+.recipe-details-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+}
+
+iframe {
+    width: 100%;
+    border: none;
+    height: max-content;
+}

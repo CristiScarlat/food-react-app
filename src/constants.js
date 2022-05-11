@@ -1,0 +1,1 @@
+export const APP_KEY = "87acd22f89974bd9b0e0b4c5bac55e0b";
