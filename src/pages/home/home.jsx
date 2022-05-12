@@ -12,6 +12,9 @@ const Home = () => {
     const [recipes, setRecipes] = useState([]);
     const [search, setSearch] = useState("");
     const [query, setQuery] = useState("chicken");
+    const [totalPages, setTotalPages] = useState(1);
+    const [currentPage, setCurrentPage] = useState(1);
+
 
     const selectedDiet = useRef('none');
 
@@ -19,12 +22,12 @@ const Home = () => {
 
     useEffect(() => {
         getRecipes();
-    }, [query]);
+    }, [query, currentPage]);
 
     const getRecipes = async () => {
         const diet = selectedDiet.current !== 'none' ? `&diet=${selectedDiet.current}` : ''
         const response = await fetch(
-            `https://api.spoonacular.com/recipes/complexSearch?apiKey=${APP_KEY}&query=${query}&offset=1${diet}`
+            `https://api.spoonacular.com/recipes/complexSearch?apiKey=${APP_KEY}&query=${query}&offset=${currentPage}${diet}`
         );
         const data = await response.json();
 
@@ -32,6 +35,8 @@ const Home = () => {
         // const data = await new Promise((resolve) => {
         //     setTimeout(resolve(dummyData), 500);
         // })
+        console.log({data})
+        setTotalPages(parseInt(data.totalResults/data.number));
         setRecipes(data.results);
     };
 
@@ -43,6 +48,7 @@ const Home = () => {
         e.preventDefault();
         setQuery(search);
         setSearch("");
+        setCurrentPage(1);
     };
 
     const handleRedirect = (recipeId) => {
@@ -51,6 +57,16 @@ const Home = () => {
 
     const handleSelectDiet = (e) => {
         selectedDiet.current = e.target.value;
+    }
+
+    const handleGetPrevPage = () => {
+        if(currentPage === 1)return;
+        setCurrentPage(state => state - 1)
+    }
+
+    const handleGetNextPage = () => {
+        //if(currentPage === totalPages)return;
+        setCurrentPage(state => state + 1)
     }
 
     console.log('render-home')
@@ -85,6 +101,11 @@ const Home = () => {
                         onClick={() => handleRedirect(recipe.id)}
                     />
                 ))}
+            </div>
+            <div className='home-page-control'>
+                <button onClick={handleGetPrevPage} disabled={currentPage === 1}>Prev</button>
+                <div>{`${currentPage}/${totalPages}`}</div>
+                <button onClick={handleGetNextPage}>Next</button>
             </div>
         </>
     )

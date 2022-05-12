@@ -26,12 +26,12 @@ const RecipeDetails = () => {
 
     return (
         <>
-            <button onClick={handleGoHome}>Home</button>
+            <button onClick={handleGoHome} className="button">Home</button>
             <div className="recipe-details-container">
                 <h1>{recipeData?.title || ""}</h1>
                 {recipeData?.image && <div className="image-container"><img src={recipeData.image} alt="recipe-image" /></div>}
-                {recipeData?.summary && <iframe srcDoc={recipeData.summary} />}
-                {recipeData?.instructions && <iframe srcDoc={recipeData.instructions} />}
+                {recipeData?.summary && <div dangerouslySetInnerHTML={{__html: recipeData.summary}} />}
+                {recipeData?.instructions && <div dangerouslySetInnerHTML={{__html: recipeData.instructions}} style={{color: 'white'}}/>}
                 {recipeData?.sourceUrl && <a href={recipeData.sourceUrl} target="_blank">recipe original url</a>}
             </div>
         </>

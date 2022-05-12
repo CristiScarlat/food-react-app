@@ -11,3 +11,11 @@ select {
     color: whitesmoke;
     font-size: larger;
 }
+
+.home-page-control {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+    gap: 1rem;
+    color: white;
+}

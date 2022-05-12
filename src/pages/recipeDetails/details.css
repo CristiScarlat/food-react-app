@@ -12,8 +12,8 @@ iframe {
 }
 
 
-button{
-
+.button {
+    margin: 1rem 0 0 1rem;
     background-color: #89d9d1;
     border: none;
     color: white;
@@ -26,20 +26,23 @@ button{
 
 
 
-h1{
-
-    color:#4b4f5e;
+h1 {
+    color: #4b4f5e;
 }
 
-a{
-color:#89d9d1;
+a {
+    color: #89d9d1;
 }
 
 
 
-.recipe-details-container iframe{
+.recipe-details-container iframe {
+    color: #4b4f5e;
+}
 
-color: #4b4f5e;
-
-
+.image-container {
+    background: #bbafaf;
+    padding: 2rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
 }
